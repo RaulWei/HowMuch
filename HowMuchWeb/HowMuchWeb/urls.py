@@ -19,4 +19,5 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^grdms/', include('HowMuch_Web.urls')),
 ]
