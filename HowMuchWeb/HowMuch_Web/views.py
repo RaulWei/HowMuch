@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from GrdmsRobot import GrdmsRobot
 
 # Create your views here.
 
 def qScore(request):
-    return HttpResponse('qScore')
+    grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
+    res = ''
+    for score in grdms_root.query_points():
+        res = res + score.text + '\r\n'
+    return HttpResponse(res)
 
 def qCourse(request):
     return HttpResponse('qCourse')
