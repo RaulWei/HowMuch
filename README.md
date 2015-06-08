@@ -13,4 +13,4 @@
 
 ### 问题小结
 * 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services占用，遂解除其占用
-* 备注 db.sqlite3 用户名 / 密码为admin / admin
+* 备注 db.sqlite3 用户名 / 密码为 admin / admin
