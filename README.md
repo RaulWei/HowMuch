@@ -10,3 +10,6 @@
 ## 注
 * HowMuchCmd和HowMuchWeb是两个相对独立的工程
 * HowMuchCmd是核心代码，HowMuchWeb是核心代码的外壳
+
+### 问题小结
+* 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services占用，遂解除其占用
