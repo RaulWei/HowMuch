@@ -11,13 +11,20 @@ import re
 
 class GrdmsRobot:
 
-    def __init__(self):
+    def __init__(self, username=0, password=0):
         # 构造函数 登陆教务处并获取cookie
-        login_data = {
-            'loginType': '0',
-            'j_username': j_username,
-            'j_password': j_password,
-        }
+        if username == 0 and password == 0:
+            login_data = {
+                'loginType': '0',
+                'j_username': j_username,
+                'j_password': j_password,
+            }
+        else:
+            login_data = {
+                'loginType': '0',
+                'j_username': username,
+                'j_password': password,
+            }
         login_headers = {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) '
@@ -149,7 +156,7 @@ class GrdmsRobot:
         return
 
 if __name__ == '__main__':
-    grdms_root = GrdmsRobot()
+    grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     for score in grdms_root.query_points():
         print(score.text)
     grdms_root.query_courses('2014', '第一学期')
