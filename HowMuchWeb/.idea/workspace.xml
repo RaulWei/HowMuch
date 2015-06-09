@@ -72,7 +72,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HowMuch_Web/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="28" selection-start="660" selection-end="660" vertical-scroll-proportion="0.31434184" vertical-offset="360" max-vertical-offset="920">
+            <state line="30" column="26" selection-start="840" selection-end="840" vertical-scroll-proportion="0.47151276" vertical-offset="360" max-vertical-offset="920">
               <folding>
                 <element signature="e#25#60#0" expanded="true" />
               </folding>
@@ -450,7 +450,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17279412" sideWeight="0.4991708" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16237745" sideWeight="0.50082916" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -834,7 +834,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HowMuch_Web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="28" selection-start="660" selection-end="660" vertical-scroll-proportion="0.31434184" vertical-offset="360" max-vertical-offset="920">
+        <state line="30" column="26" selection-start="840" selection-end="840" vertical-scroll-proportion="0.47151276" vertical-offset="360" max-vertical-offset="920">
           <folding>
             <element signature="e#25#60#0" expanded="true" />
           </folding>
