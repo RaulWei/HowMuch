@@ -7,4 +7,6 @@ import HowMuch_Web.views
 urlpatterns = patterns('',
                        url(r'^qScore/', HowMuch_Web.views.qScore),
                        url(r'^qCourse/', HowMuch_Web.views.qCourse),
+                       url(r'^bing/', HowMuch_Web.views.bind),
+                       url(r'^grdms/', HowMuch_Web.views.grdms),
                        )
