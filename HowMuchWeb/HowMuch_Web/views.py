@@ -9,6 +9,7 @@ def qScore(request):
     res = ''
     for score in grdms_root.query_points():
         res = res + score.text + '\n'
+
     return HttpResponse(res)
 
 def qCourse(request):
