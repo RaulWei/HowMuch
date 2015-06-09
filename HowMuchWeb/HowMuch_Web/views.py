@@ -29,13 +29,13 @@ def bind(request):
         # 检查数据库是否有此用户 如果没有则存入数据库
         exist = User.objects.filter(j_username=request.POST['username'])
         if exist.exists():
-            return HttpResponse('用户已存在')
+            return HttpResponse('user existed')
         else:
             user = User()
             user.j_username = request.POST['username']
             user.j_password = request.POST['password']
             user.save()
-            return HttpResponse('绑定成功')
+            return HttpResponse("bind success")
 
 def grdms(request):
     return
