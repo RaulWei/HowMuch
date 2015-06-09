@@ -8,7 +8,7 @@ def qScore(request):
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     res = ''
     for score in grdms_root.query_points():
-        res = res + score.text + '\r\n'
+        res = res + score.text + '\n'
     return HttpResponse(res)
 
 def qCourse(request):
