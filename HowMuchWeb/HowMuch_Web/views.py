@@ -14,3 +14,11 @@ def qScore(request):
 
 def qCourse(request):
     return HttpResponse('qCourse')
+
+def bind(request):
+    if request.method == 'GET':
+        # 跳转到绑定用户界面
+        return
+    elif request.method == 'POST':
+        # 检查数据库是否有此用户 如果没有则存入数据库
+        return 
