@@ -47,5 +47,6 @@ Temporary Items
 *.so
 *.egg
 *.egg-info
+sqlite3.exe
 dist
 build
