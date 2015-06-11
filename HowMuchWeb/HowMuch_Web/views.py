@@ -5,6 +5,7 @@ from django.template import loader, Context
 from django.http import HttpResponse
 from GrdmsRobot import GrdmsRobot
 from models import User
+import wechatUtil
 
 # Create your views here.
 
@@ -38,4 +39,8 @@ def bind(request):
             return HttpResponse("bind success")
 
 def grdms(request):
+    if request.method == 'GET':
+        return HttpResponse(wechatUtil.checkSignature(request), content_type="text/plain")
+    if request.method == 'POST':
+        return HttpResponse() # to do
     return
