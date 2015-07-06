@@ -5,6 +5,7 @@ from django.template import loader, Context
 from django.http import HttpResponse
 from GrdmsRobot import GrdmsRobot
 from models import User
+import wechatUtil
 
 # Create your views here.
 
@@ -29,13 +30,21 @@ def bind(request):
         # 检查数据库是否有此用户 如果没有则存入数据库
         exist = User.objects.filter(j_username=request.POST['username'])
         if exist.exists():
-            return HttpResponse('user existed')
+            t = loader.get_template("bindError.html")
+            c = Context({})
+            return HttpResponse(t.render(c))
         else:
             user = User()
             user.j_username = request.POST['username']
             user.j_password = request.POST['password']
             user.save()
-            return HttpResponse("bind success")
+            t = loader.get_template("bindSuccess.html")
+            c = Context({})
+            return HttpResponse(t.render(c))
 
 def grdms(request):
+    if request.method == 'GET':
+        return HttpResponse(wechatUtil.checkSignature(request), content_type="text/plain")
+    if request.method == 'POST':
+        return HttpResponse() # to do
     return
