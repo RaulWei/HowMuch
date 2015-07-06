@@ -50,3 +50,5 @@ Temporary Items
 sqlite3.exe
 dist
 build
+*.xml
+*.iml
