@@ -13,5 +13,5 @@
 * HowMuchWeb部分的设计模式学习的是[WeiPython](https://github.com/PegasusWang/WeiPython)，感谢
 
 ### 问题小结
-* 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services占用，遂解除其占用
-* 备注 db.sqlite3 用户名 / 密码为 admin / admin
+* 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services服务占用，所以关闭该服务
+* db.sqlite3的用户名以及密码均为admin
