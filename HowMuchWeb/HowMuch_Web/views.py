@@ -5,20 +5,32 @@ from django.template import loader, Context
 from django.http import HttpResponse
 from GrdmsRobot import GrdmsRobot
 from models import User
+import time
 import wechatUtil
 
 # Create your views here.
 
 def qScore(request):
+    # test
+    fromUserName, toUserName, msgType = 'user', 'django', 'xml'
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     res = ''
     for score in grdms_root.query_points():
         res = res + score.text + '\r\n'
 
-    return HttpResponse(res)
+    return render(request, 'replyText.xml',
+                  {
+                      'toUserName': fromUserName,
+                      'fromUserName': toUserName,
+                      'createTime': time.time(),
+                      'msgType': msgType,
+                      'content': res,
+                  },
+                  content_type='application/xml')
 
 def qCourse(request):
     return HttpResponse('qCourse')
+
 
 def bind(request):
     if request.method == 'GET':
@@ -42,9 +54,10 @@ def bind(request):
             c = Context({})
             return HttpResponse(t.render(c))
 
+
 def grdms(request):
     if request.method == 'GET':
         return HttpResponse(wechatUtil.checkSignature(request), content_type="text/plain")
     if request.method == 'POST':
-        return HttpResponse() # to do
+        return HttpResponse()  # to do
     return
