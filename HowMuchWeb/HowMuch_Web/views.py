@@ -10,10 +10,9 @@ import wechatUtil
 
 # Create your views here.
 
-def qScore(request):
-    # test
-    fromUserName, toUserName, msgType = 'user', 'django', 'xml'
+def qScore(request, fromUserName, toUserName):
 
+    # get scores store in res
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     res, count = '', 0
     for score in grdms_root.query_points():
@@ -22,12 +21,13 @@ def qScore(request):
                   score.contents[19].string + ', ' + score.contents[23].string + ';\r\n'
         count += 1
 
+    # reply by xml
     return render(request, 'replyText.xml',
                   {
                       'toUserName': fromUserName,
                       'fromUserName': toUserName,
                       'createTime': time.time(),
-                      'msgType': msgType,
+                      'msgType': 'xml',
                       'content': res,
                   },
                   content_type='application/xml')
@@ -64,5 +64,13 @@ def grdms(request):
     if request.method == 'GET':
         return HttpResponse(wechatUtil.checkSignature(request), content_type="text/plain")
     if request.method == 'POST':
-        return HttpResponse()  # to do
-    return
+        # 默认是文本消息
+        dictText = wechatUtil.wechatUtil.parseXml(request)
+        toUserName = dictText['FromUserName']
+        fromUserName = dictText['ToUserName']
+        content = dictText['Content']
+        if content == '查询成绩':
+            return qScore(request, fromUserName, toUserName)
+        if content == '查询课表':
+            return qCourse(request)
+        return HttpResponse()
