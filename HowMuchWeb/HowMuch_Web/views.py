@@ -27,7 +27,7 @@ def qScore(request, fromUserName, toUserName):
                       'toUserName': fromUserName,
                       'fromUserName': toUserName,
                       'createTime': time.time(),
-                      'msgType': 'xml',
+                      'msgType': 'text',
                       'content': res,
                   },
                   content_type='application/xml')
@@ -62,7 +62,8 @@ def bind(request):
 
 def grdms(request):
     if request.method == 'GET':
-        return HttpResponse(wechatUtil.checkSignature(request), content_type="text/plain")
+        if wechatUtil.checkSignature(request):
+            return HttpResponse(request.GET.get(u'echostr'), content_type="text/plain")
     if request.method == 'POST':
         # 默认是文本消息
         dictText = wechatUtil.wechatUtil.parseXml(request)
