@@ -8,7 +8,7 @@ def checkSignature(request):
     signature = request.GET.get(u'signature', None)
     timestamp = request.GET.get(u'timestamp', None)
     nonce = request.GET.get(u'nonce', None)
-    token = u'wechat_token'    # your wechat token
+    token = u'15201613264'    # your wechat token
 
     tmplist = [token, timestamp, nonce]
     tmplist.sort()
