@@ -13,10 +13,14 @@ import wechatUtil
 def qScore(request):
     # test
     fromUserName, toUserName, msgType = 'user', 'django', 'xml'
+
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
-    res = ''
+    res, count = '', 0
     for score in grdms_root.query_points():
-        res = res + score.text + '\r\n'
+        if count != 0:
+            res = res + score.contents[7].string + ', ' + \
+                  score.contents[19].string + ', ' + score.contents[23].string + ';\r\n'
+        count += 1
 
     return render(request, 'replyText.xml',
                   {
@@ -27,6 +31,7 @@ def qScore(request):
                       'content': res,
                   },
                   content_type='application/xml')
+
 
 def qCourse(request):
     return HttpResponse('qCourse')
