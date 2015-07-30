@@ -65,13 +65,13 @@ def grdms(request):
         if wechatUtil.checkSignature(request):
             return HttpResponse(request.GET.get(u'echostr'), content_type="text/plain")
     if request.method == 'POST':
-        # 默认是文本消息
         dictText = wechatUtil.wechatUtil.parseXml(request)
         toUserName = dictText['FromUserName']
         fromUserName = dictText['ToUserName']
         content = dictText['Content']
-        if content == u'查询成绩':
+        if content == '查询成绩':
             return qScore(request, fromUserName, toUserName)
-        if content == u'查询课表':
+        if content == '查询课表':
             return qCourse(request)
         return HttpResponse()
+    return HttpResponse()
