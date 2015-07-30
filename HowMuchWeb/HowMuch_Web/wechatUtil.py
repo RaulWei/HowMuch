@@ -21,9 +21,6 @@ def checkSignature(request):
 
 class wechatUtil(object):
 
-    # message types
-    MESSAGETYPE = [u'Image', u'Voice', u'Video', u'Music', u'Articles']
-
     def __init__(self):
         pass
 
