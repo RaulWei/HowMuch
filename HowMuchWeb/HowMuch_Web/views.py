@@ -11,7 +11,6 @@ import wechatUtil
 # Create your views here.
 
 def qScore(request, fromUserName, toUserName):
-
     # get scores store in res
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     res, count = '', 0
@@ -22,15 +21,29 @@ def qScore(request, fromUserName, toUserName):
         count += 1
 
     # reply by xml
-    return render(request, 'replyText.xml',
-                  {
-                      'toUserName': fromUserName,
-                      'fromUserName': toUserName,
-                      'createTime': time.time(),
-                      'msgType': 'text',
-                      'content': res,
-                  },
-                  content_type='application/xml')
+    extTpl = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
+    extTpl = extTpl % (fromUserName, toUserName, str(int(time.time())), 'text', res)
+    return HttpResponse(extTpl)
+    # context = {
+    # 'toUserName': fromUserName,
+    #     'fromUserName': toUserName,
+    #     'createTime': str(int(time.time())),
+    #     'msgType': 'text',
+    #     'content': res
+    # }
+    # reply = loader.render_to_string('replyText.xml', context)
+    # print(reply)
+    # return HttpResponse(reply)
+
+    # return render(request, 'replyText.xml',
+    #               {
+    #                   'toUserName': fromUserName,
+    #                   'fromUserName': toUserName,
+    #                   'createTime': int(time.time()),
+    #                   'msgType': 'text',
+    #                   'content': res,
+    #               },
+    #               content_type='application/xml')
 
 
 def qCourse(request):
