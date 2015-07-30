@@ -94,9 +94,10 @@ def grdms(request):
             # 事件
             event = dictText['Event']
             if event == 'subscribe':
+                # 关注
                 fromUserName = dictText['ToUserName']
                 toUserName = dictText['FromUserName']
-                content = '感谢关注'
+                content = '感谢关注，请<a href="/bind">绑定账号</a>'
                 return render(request, 'replyText.xml', {
                     'toUserName': toUserName,
                     'fromUserName': fromUserName,
