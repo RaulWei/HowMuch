@@ -33,31 +33,5 @@ class wechatUtil(object):
             dict_xml[child.tag] = child.text.encode(u'UTF-8')    # note
         return dict_xml
 
-    @ staticmethod
-    def class2Xml(obj):
-        root = etree.Element(u'xml')
-        for key, value in vars(obj).items():
-            if key in wechatUtil.MESSAGETYPE:
-                tmproot = etree.SubElement(root, key)
-                if key == u'Articles':    # solve Article, it's special
-                    for eachArticle in value:
-                        etree.SubElement(tmproot, u'item')
-                        for tmpkey, tmpvalue in vars(eachArticle).items():
-                            tmpkey_ele = etree.SubElement(tmproot, tmpkey)
-                            tmpkey_ele.text = etree.CDATA(unicode(tmpvalue))
-                else:
-                    for tmpkey, tmpvalue in vars(obj.__getattribute__(key)).items():
-                        tmpkey_ele = etree.SubElement(tmproot, tmpkey)
-                    if u'time' in tmpkey.lower() or u'count' in tmpkey.lower():
-                        tmpkey_ele.text = unicode(tmpvalue)
-                    else:    # CDATA tag for str
-                        tmpkey_ele.text = etree.CDATA(unicode(tmpvalue))
-            else:
-                if u'time' in key.lower() or u'count' in key.lower():
-                    etree.SubElement(root, key).text = unicode(value)
-                else:
-                    etree.SubElement(root, key).text = etree.CDATA(unicode(value))
-
-        return etree.tostring(root, pretty_print=True, xml_declaration=False, encoding=u'utf-8')
 
 
