@@ -70,8 +70,8 @@ def grdms(request):
         toUserName = dictText['FromUserName']
         fromUserName = dictText['ToUserName']
         content = dictText['Content']
-        if content == '查询成绩':
+        if content == u'查询成绩':
             return qScore(request, fromUserName, toUserName)
-        if content == '查询课表':
+        if content == u'查询课表':
             return qCourse(request)
         return HttpResponse()
