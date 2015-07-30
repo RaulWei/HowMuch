@@ -26,7 +26,7 @@ def qScore(request, fromUserName, toUserName):
     return HttpResponse(extTpl)
     # context = {
     # 'toUserName': fromUserName,
-    #     'fromUserName': toUserName,
+    # 'fromUserName': toUserName,
     #     'createTime': str(int(time.time())),
     #     'msgType': 'text',
     #     'content': res
@@ -79,12 +79,28 @@ def grdms(request):
             return HttpResponse(request.GET.get(u'echostr'), content_type="text/plain")
     if request.method == 'POST':
         dictText = wechatUtil.wechatUtil.parseXml(request)
-        toUserName = dictText['FromUserName']
-        fromUserName = dictText['ToUserName']
-        content = dictText['Content']
-        if content == '查询成绩':
-            return qScore(request, fromUserName, toUserName)
-        if content == '查询课表':
-            return qCourse(request)
-        return HttpResponse()
-    return HttpResponse()
+
+        if dictText['MsgType'] == 'text':
+            # 文本
+            content = dictText['Content']
+            if content == '查询成绩':
+                toUserName = dictText['FromUserName']
+                fromUserName = dictText['ToUserName']
+                return qScore(request, fromUserName, toUserName)
+            if content == '查询课表':
+                return qCourse(request)
+
+        if dictText['MsgType'] == 'event':
+            # 事件
+            event = dictText['Event']
+            if event == 'subscribe':
+                fromUserName = dictText['ToUserName']
+                toUserName = dictText['FromUserName']
+                content = '感谢关注'
+                return render(request, 'replyText.xml', {
+                    'toUserName': toUserName,
+                    'fromUserName': fromUserName,
+                    'createTime': int(time.time()),
+                    'msgType': 'text',
+                    'content': content,
+                },content_type='application/xml')
