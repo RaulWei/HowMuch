@@ -7,6 +7,7 @@ from GrdmsRobot import GrdmsRobot
 from models import User
 import time
 import wechatUtil
+import replyMsg
 
 # Create your views here.
 
@@ -21,29 +22,8 @@ def qScore(request, fromUserName, toUserName):
         count += 1
 
     # reply by xml
-    extTpl = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
-    extTpl = extTpl % (fromUserName, toUserName, str(int(time.time())), 'text', res)
-    return HttpResponse(extTpl)
-    # context = {
-    # 'toUserName': fromUserName,
-    # 'fromUserName': toUserName,
-    #     'createTime': str(int(time.time())),
-    #     'msgType': 'text',
-    #     'content': res
-    # }
-    # reply = loader.render_to_string('replyText.xml', context)
-    # print(reply)
-    # return HttpResponse(reply)
-
-    # return render(request, 'replyText.xml',
-    #               {
-    #                   'toUserName': fromUserName,
-    #                   'fromUserName': toUserName,
-    #                   'createTime': int(time.time()),
-    #                   'msgType': 'text',
-    #                   'content': res,
-    #               },
-    #               content_type='application/xml')
+    reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', res)
+    return HttpResponse(reply, content_type="application/xml")
 
 
 def qCourse(request):
@@ -54,7 +34,7 @@ def bind(request):
     if request.method == 'GET':
         # 跳转到绑定用户界面
         t = loader.get_template("bind.html")
-        c = Context({})
+        c = Context({'openid': request.GET.get('openID')})
         return HttpResponse(t.render(c))
     elif request.method == 'POST':
         # 检查数据库是否有此用户 如果没有则存入数据库
@@ -97,11 +77,7 @@ def grdms(request):
                 # 关注
                 fromUserName = dictText['ToUserName']
                 toUserName = dictText['FromUserName']
-                content = '感谢关注，请<a href="/bind">绑定账号</a>'
-                return render(request, 'replyText.xml', {
-                    'toUserName': toUserName,
-                    'fromUserName': fromUserName,
-                    'createTime': int(time.time()),
-                    'msgType': 'text',
-                    'content': content,
-                },content_type='application/xml')
+                content = "感谢关注，请<a href=\"http://http://1.howmuchbit.sinaapp.com/grdms/bind?openID="\
+                          + fromUserName + "\">绑定账号</a>"
+                reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', content)
+                return HttpResponse(reply, content_type="application/xml")
