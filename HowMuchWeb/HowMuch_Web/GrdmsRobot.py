@@ -34,7 +34,10 @@ class GrdmsRobot:
         self.login_headers = login_headers
         login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
         self.login_cookies = login_r.cookies
-        return
+
+        if not login_r:
+            return False
+        return True
 
     def uni_to_zh(self, str):
         # unicode转中文 返回中文str
