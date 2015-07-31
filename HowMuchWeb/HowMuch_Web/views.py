@@ -49,8 +49,8 @@ def bind(request):
             user.j_username = request.POST['username']
             user.j_password = request.POST['password']
             user.save()
-            t = loader.get_template("bindSuccess.html")
-            c = Context({})
+            t = loader.get_template("bindRes.html")
+            c = Context({'bindRes': '绑定成功'})
             return HttpResponse(t.render(c))
 
 
