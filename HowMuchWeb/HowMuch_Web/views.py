@@ -44,6 +44,12 @@ def bind(request):
             c = Context({})
             return HttpResponse(t.render(c))
         else:
+            # 检查用户名密码是否合法
+            j_username = request.POST['username']
+            j_password = request.POST['password']
+            if not GrdmsRobot(j_username, j_password):
+                return render(request, "bindRes.html", {'bindRes': '用户名或密码错误，请返回重新绑定'})
+
             user = User()
             user.openid = request.POST['openid']
             user.j_username = request.POST['username']
