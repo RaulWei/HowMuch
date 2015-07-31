@@ -32,12 +32,11 @@ class GrdmsRobot:
                           'Chrome/42.0.2311.135 Safari/537.36'
         }
         self.login_headers = login_headers
-        login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
-        self.login_cookies = login_r.cookies
+        self.login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
+        self.login_cookies = self.login_r.cookies
 
-        if not login_r:
-            return False
-        return True
+        return
+
 
     def uni_to_zh(self, str):
         # unicode转中文 返回中文str
