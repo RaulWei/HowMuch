@@ -3,6 +3,6 @@
      <FromUserName><![CDATA[fromUser]]></FromUserName>
      <CreateTime>1348831860</CreateTime>
      <MsgType><![CDATA[text]]></MsgType>
-     <Content><![CDATA[查询成绩]]></Content>
+     <Content><![CDATA[<a href="http://www.baidu.com"></a>]]></Content>
      <MsgId>1234567890123456</MsgId>
  </xml>
