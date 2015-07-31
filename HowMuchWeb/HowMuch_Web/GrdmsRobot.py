@@ -32,8 +32,13 @@ class GrdmsRobot:
                           'Chrome/42.0.2311.135 Safari/537.36'
         }
         self.login_headers = login_headers
-        self.login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
-        self.login_cookies = self.login_r.cookies
+        login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
+        login_r_soup = BeautifulSoup(''.join(login_r.text))
+        if login_r_soup.title.text == u"您的登陆失败！":
+            self.login_status = False
+        else:
+            self.login_status = True
+            self.login_cookies = login_r.cookies
 
         return
 
@@ -158,7 +163,7 @@ class GrdmsRobot:
         return
 
 if __name__ == '__main__':
-    grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
+    grdms_root = GrdmsRobot('2120141061', 'weimw5257839')
     for score in grdms_root.query_points():
         print(score.text)
     grdms_root.query_courses('2014', '第一学期')
