@@ -40,15 +40,14 @@ def bind(request):
         # 检查数据库是否有此用户 如果没有则存入数据库
         exist = User.objects.filter(openid=request.POST['openid'])
         if exist.exists():
-            t = loader.get_template("bindError.html")
-            c = Context({})
-            return HttpResponse(t.render(c))
+            return render(request, "bindRes.html", {'bindRes': '您已经绑定账号，无需重复绑定'})
         else:
             # 检查用户名密码是否合法
             j_username = request.POST['username']
             j_password = request.POST['password']
             grd = GrdmsRobot(j_username, j_password)
-            return render(request, "bindRes.html", {'bindRes': '用户名或密码错误，请返回重新绑定'})
+            if not grd.login_status:
+                return render(request, "bindRes.html", {'bindRes': '用户名或密码错误，请返回重新绑定'})
 
             user = User()
             user.openid = request.POST['openid']
