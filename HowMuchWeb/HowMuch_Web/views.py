@@ -64,12 +64,17 @@ def grdms(request):
         if dictText['MsgType'] == 'text':
             # 文本
             content = dictText['Content']
+            toUserName = dictText['FromUserName']
+            fromUserName = dictText['ToUserName']
             if content == '查询成绩':
-                toUserName = dictText['FromUserName']
-                fromUserName = dictText['ToUserName']
                 return qScore(request, fromUserName, toUserName)
             if content == '查询课表':
                 return qCourse(request)
+            if content == '帮助':
+                replyContent = "您可以回复我们来获取信息：\n回复“绑定”将微信号与教务系统账号绑定\n" \
+                               "回复“查询成绩”查询研究生阶段所有科目成绩\n回复“帮助”获取本条消息"
+                reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', replyContent)
+                return HttpResponse(reply, content_type="application/xml")
 
         if dictText['MsgType'] == 'event':
             # 事件
