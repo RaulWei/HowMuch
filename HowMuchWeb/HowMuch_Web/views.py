@@ -38,13 +38,14 @@ def bind(request):
         return HttpResponse(t.render(c))
     elif request.method == 'POST':
         # 检查数据库是否有此用户 如果没有则存入数据库
-        exist = User.objects.filter(j_username=request.POST['username'])
+        exist = User.objects.filter(openid=request.POST['openid'])
         if exist.exists():
             t = loader.get_template("bindError.html")
             c = Context({})
             return HttpResponse(t.render(c))
         else:
             user = User()
+            user.openid = request.POST['openid']
             user.j_username = request.POST['username']
             user.j_password = request.POST['password']
             user.save()
