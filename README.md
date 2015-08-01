@@ -18,9 +18,11 @@
 <img src='/Effect_Picture/Screenshot_2015-08-01-19-23-44.png' width=250 />
 
 ## 注
-* HowMuchCmd和HowMuchWeb是两个相对独立的工程
-* HowMuchCmd是核心代码，HowMuchWeb是核心代码的外壳
-
+- HowMuchCmd和HowMuchWeb是两个相对独立的工程
+- HowMuchCmd是核心代码，HowMuchWeb是核心代码的外壳
+- 本项目部署到SAE的教程详见我的博客园
+  + [【解决】Django项目废弃SQLite3拥抱MySQL](http://www.cnblogs.com/raul-ac/p/4181295.html)
+  + [【解决】SAE部署Django1.6+MySQL](http://www.cnblogs.com/raul-ac/p/4183400.html)
 
 ## 参考项目
 * [DWeixin](https://github.com/manyunkai/DWeixin)
@@ -28,7 +30,7 @@
 * [littlesnail](https://github.com/liushuaikobe/littlesnail)
 
 ## 问题小结
-* 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services服务占用，所以关闭该服务
+* 微信公众平台接口调用仅支持80端口，本机80端口被sql server reporting services服务占用需关闭
 * db.sqlite3 用户名[admin] 密码[admin]
 * superuser 用户名[admin] 密码[admin]
 
