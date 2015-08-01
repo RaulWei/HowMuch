@@ -20,16 +20,17 @@
 ## 注
 * HowMuchCmd和HowMuchWeb是两个相对独立的工程
 * HowMuchCmd是核心代码，HowMuchWeb是核心代码的外壳
-* HowMuchWeb部分的设计模式学习的是[WeiPython](https://github.com/PegasusWang/WeiPython)，感谢
+
 
 ## 参考项目
 * [DWeixin](https://github.com/manyunkai/DWeixin)
 * [WeiPython](https://github.com/PegasusWang/WeiPython)
 * [littlesnail](https://github.com/liushuaikobe/littlesnail)
 
-### 问题小结
+## 问题小结
 * 因微信需要，Django修改默认端口为80，本机80端口被sql server reporting services服务占用，所以关闭该服务
-* db.sqlite3的用户名以及密码均为admin
-* superuser的用户名以及密码也均为admin
-*
+* db.sqlite3 用户名[admin] 密码[admin]
+* superuser 用户名[admin] 密码[admin]
 
+## 二维码
+![Alt text](/Effect_Picture/qrcode_for_gh_bd2412043977_258.jpg)
