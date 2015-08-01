@@ -33,8 +33,16 @@ class GrdmsRobot:
         }
         self.login_headers = login_headers
         login_r = requests.post("http://grdms.bit.edu.cn/yjs/login.do", headers=login_headers, data=login_data)
-        self.login_cookies = login_r.cookies
+        login_r_soup = BeautifulSoup(''.join(login_r.text))
+        if login_r_soup.title.text == u"您的登陆失败！":
+            self.login_status = False
+            self.login_cookies = None
+        else:
+            self.login_status = True
+            self.login_cookies = login_r.cookies
+
         return
+
 
     def uni_to_zh(self, str):
         # unicode转中文 返回中文str
@@ -97,7 +105,10 @@ class GrdmsRobot:
         course_num = int(match.group(0).encode('utf-8')[match.group(0).encode('utf-8').rfind('s')+1:-1]) + 1
         print(course_num)
 
+        courses = []
         for i in range(course_num):
+            course = {}
+
             # 查找课程代码
             re_str = r's' + str(i) + r'.kcdm=\"[^\"]*\"'
             pattern = re.compile(re_str)
@@ -111,6 +122,7 @@ class GrdmsRobot:
             match = pattern.search(str_course_r)
             kcmc = GrdmsRobot.uni_to_zh(self, match.group(0).encode('utf-8')[11:-1])
             print(kcmc)
+            course['kcmc'] = kcmc
 
             # 查找学时
             re_str = r's' + str(i) + r'.xs=\"[^\"]*\"'
@@ -132,6 +144,7 @@ class GrdmsRobot:
             match = pattern.search(str_course_r)
             skjsxm = GrdmsRobot.uni_to_zh(self, match.group(0).encode('utf-8')[11:-1])
             print(skjsxm)
+            course['skjsxm'] = skjsxm
 
             # 查找上课时间地点
             re_str = r's' + str(i) + r'.sksjdd=\"[^\"]*\"'
@@ -139,6 +152,9 @@ class GrdmsRobot:
             match = pattern.search(str_course_r)
             sksjdd = GrdmsRobot.uni_to_zh(self, match.group(0).encode('utf-8')[11:-1])
             print(sksjdd)
+            course['sksjdd'] = sksjdd
+
+            courses.append(course)
 
         # 查找用户出生日期
         re_str = r's1.csrq=\"\w*\"'
@@ -153,10 +169,12 @@ class GrdmsRobot:
         match = pattern.search(str_course_r)
         kczwmc = match.group(0)[11:-1]
         print(GrdmsRobot.uni_to_zh(self, kczwmc))
-        return
+
+        return courses
 
 if __name__ == '__main__':
     grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
     for score in grdms_root.query_points():
         print(score.text)
-    grdms_root.query_courses('2014', '第一学期')
+    for course in grdms_root.query_courses('2014', '第一学期'):
+        print(course['kcmc'] + ";" + course['skjsxm'] + ";" + course['sksjdd'])
