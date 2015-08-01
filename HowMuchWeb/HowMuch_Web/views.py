@@ -12,8 +12,16 @@ import replyMsg
 # Create your views here.
 
 def qScore(request, fromUserName, toUserName):
+    # 先判断是否绑定账号
+    user = User.objects.filter(openid=toUserName)
+    if not user.exists():
+        reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', '您未完成账号绑定，请绑定后查询')
+        return HttpResponse(reply, content_type="application/xml")
+
     # get scores store in res
-    grdms_root = GrdmsRobot('2120141061', 'weimw52578392')
+    username = user[0].j_username
+    password = user[0].j_password
+    grdms_root = GrdmsRobot(username, password)
     res, count = '', 0
     for score in grdms_root.query_points():
         if count != 0:
