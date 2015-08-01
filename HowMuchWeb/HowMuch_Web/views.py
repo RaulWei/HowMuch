@@ -89,7 +89,7 @@ def grdms(request):
                     reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', '您已经完成账号绑定，回复“帮助”查看更多')
                     return HttpResponse(reply, content_type="application/xml")
                 else:
-                    replyContent = "<a href=\"http://1.howmuchbit.sinaapp.com/grdms/bind?openID=" + toUserName + "\">绑定账号</a>"
+                    replyContent = "<a href=\"http://howmuchbit.sinaapp.com/grdms/bind?openID=" + toUserName + "\">绑定账号</a>"
                     reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', replyContent)
                     return HttpResponse(reply, content_type="application/xml")
             if content == '帮助':
@@ -112,7 +112,7 @@ def grdms(request):
                                                   'text', '您已经完成账号绑定，回复“帮助”查看更多')
                     return HttpResponse(reply, content_type="application/xml")
                 # 还没绑定账号
-                content = "感谢关注，请先<a href=\"http://1.howmuchbit.sinaapp.com/grdms/bind?openID=" \
+                content = "感谢关注，请先<a href=\"http://howmuchbit.sinaapp.com/grdms/bind?openID=" \
                           + toUserName + "\">绑定账号</a>\n\n您可以回复我们来获取信息：\n回复“绑定”将微信号与教务系统账号绑定\n" \
                                          "回复“查询成绩”查询研究生阶段所有科目成绩\n回复“帮助”获取本条消息"
                 reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', content)
