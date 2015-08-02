@@ -121,3 +121,4 @@ def grdms(request):
                                          "回复“查询成绩”查询研究生阶段所有科目成绩\n回复“帮助”获取本条消息"
                 reply = replyMsg.replyText % (toUserName, fromUserName, str(int(time.time())), 'text', content)
                 return HttpResponse(reply, content_type="application/xml")
+#refactor
