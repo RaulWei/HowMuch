@@ -56,7 +56,7 @@ def grdms(request):
             if content == "绑定":
                 return utilText.bind(dictText)
             if content == '帮助':
-                return  utilText.help(dictText)
+                return utilText.help(dictText)
 
         if dictText['MsgType'] == 'event':
             # 事件
