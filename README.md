@@ -7,7 +7,7 @@
 
 ## 包依赖
 * python == 2.7.9
-* django == 1.8
+* Django == 1.8
 * MySQL-python == 1.2.5
 * lxml == 3.4.4
 * BeautifulSoup == 3.2.1
