@@ -10,6 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+# sae need
+# import os.path
+# import sae.const
+# from os import environ
+#
+# MYSQL_DB = sae.const.MYSQL_DB
+# MYSQL_USER = sae.const.MYSQL_USER
+# MYSQL_PASS = sae.const.MYSQL_PASS
+# MYSQL_HOST_M = sae.const.MYSQL_HOST
+# MYSQL_HOST_S = sae.const.MYSQL_HOST_S
+# MYSQL_PORT = sae.const.MYSQL_PORT
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -77,14 +89,25 @@ WSGI_APPLICATION = 'HowMuchWeb.wsgi.application'
 
 DATABASES = {
     'default': {
+        # sqlite3
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        # local mysql
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'HowMuchWeb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
+
+        # sae mysql
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': MYSQL_DB,
+        # 'USER': MYSQL_USER,
+        # 'PASSWORD': MYSQL_PASS,
+        # 'HOST': MYSQL_HOST_M,
+        # 'PORT': MYSQL_PORT,
     }
 }
 
