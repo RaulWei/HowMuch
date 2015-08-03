@@ -7,8 +7,8 @@ import time
 import replyMsg
 
 def subscribe(dictText):
-    fromUserName = dictText['ToUserName']
     toUserName = dictText['FromUserName']
+    fromUserName = dictText['ToUserName']
     exist = User.objects.filter(openid=toUserName)
     # 已经绑定账号
     if exist.exists():
